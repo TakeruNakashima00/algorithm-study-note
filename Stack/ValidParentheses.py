@@ -3,17 +3,29 @@ class Solution:
         stack = []
         closeToOpen = {")":"(", "]":"[", "}":"{"}
 
-        for i in s:
+        # for i in s:
 
-            # end brace
-            if stack and stack[-1] == closeToOpen.get(i):
-                stack.pop()
+        #     # end brace
+        #     if stack and stack[-1] == closeToOpen.get(i):
+        #         stack.pop()
 
-            # start brace
+        #     # start brace
+        #     else:
+        #         stack.append(i)
+
+        # return stack == []
+        for c in s:
+            if c in closeToOpen:
+                print(c)
+                if stack and stack[-1] == closeToOpen[c]:
+                    stack.pop()
+                else:
+                    return False
             else:
-                stack.append(i)
+                stack.append(c)
 
-        return stack == []
+        return True if not stack else False
+
 
 if __name__ == "__main__":
     sol = Solution()
