@@ -3,17 +3,6 @@ class Solution:
         stack = []
         closeToOpen = {")":"(", "]":"[", "}":"{"}
 
-        # for i in s:
-
-        #     # end brace
-        #     if stack and stack[-1] == closeToOpen.get(i):
-        #         stack.pop()
-
-        #     # start brace
-        #     else:
-        #         stack.append(i)
-
-        # return stack == []
         for c in s:
             if c in closeToOpen:
                 print(c)
