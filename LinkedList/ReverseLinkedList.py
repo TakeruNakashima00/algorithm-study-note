@@ -71,6 +71,21 @@ class LinkedList(object):
             current_node = temp_node
         self.head = previous_node
 
+    def reverseRecursive(self) -> None:
+
+        def _reverseRecursive(current_node: Node, previous_node: Node):
+            if not current_node:
+                return previous_node
+
+            temp_node = current_node.next
+            current_node.next = previous_node
+            previous_node = current_node
+            current_node = temp_node
+            return _reverseRecursive(current_node, previous_node)
+
+        self.head = _reverseRecursive(self.head, None)
+
+
 if __name__ == '__main__':
     l = LinkedList()
     l.append(1)
@@ -80,6 +95,7 @@ if __name__ == '__main__':
     l.print()
     print("############")
 
-    l.reverseIterative()
-    # l.print()
+    # l.reverseIterative()
+    l.reverseRecursive()
+    l.print()
 
