@@ -42,3 +42,9 @@ for index, key in enumerate(hashmap):
 ## explain object method
 hashmap = {"name":"take", "age": 25, "job": "Developer"}
 # help(hashmap)
+
+
+# join
+x = ["1", "3", "5"]
+print(''.join(x))
+print(int(''.join(x)))
