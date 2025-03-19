@@ -32,29 +32,26 @@ def check_palindrome(char: str) -> bool:
 
 
 def find_palindrome(strings: str, left: int, right: int):
-    result = []
     while 0 <= left and right <= len(strings) -1:
         if strings[left] != strings[right]:
             break
-        result.append(strings[left: right+1])
+        yield strings[left: right+1]
         left -= 1
         right += 1
-    return result
 
 def find_all_palindrome(strings: str):
-    result = []
     len_strings = len(strings)
     if not len_strings:
-        return result
+        yield
     if len_strings == 1:
-        result.append(result)
+        yield strings
 
     # aba
     # abba
     for i in range(1, len_strings-1):
-        [result.append(s) for s in find_palindrome(strings, i-1, i+1)]
-        [result.append(s) for s in find_palindrome(strings, i-1, i)]
-    return result
+        yield from find_palindrome(strings, i-1, i+1)
+        yield from find_palindrome(strings, i-1, i)
 
 if __name__ == '__main__':
-    print(find_all_palindrome('cabbac'))
+    for g in find_all_palindrome('cabbac'):
+        print(g)
