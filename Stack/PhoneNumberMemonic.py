@@ -35,3 +35,14 @@ def phone_memonic_v1(phone_number: str) -> List[str]:
 
 if __name__ == '__main__':
     print(phone_memonic_v1('23'))
+
+
+"""
+Solution
+- Consider HashMap
+- Convert str into List. By using ''.join(list) To use hashTable
+- Convert List into str. By using [x for x in str]
+- DFS(Depth First Search)
+    think of finish statement
+    using timing is search into depth
+"""
