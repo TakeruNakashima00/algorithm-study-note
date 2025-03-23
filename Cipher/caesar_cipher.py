@@ -2,23 +2,32 @@
 Input: Hello World
 Output: Khoor Zruog
 """
-import string
 
-def caesar(text: str, shift: int) -> str:
+def caesar_cipher(text: str, shift: int) -> str:
     result = ""
-    alphabet = ""
-    for char in text:
 
+    for char in text:
         if char.islower():
-            alphabet = string.ascii_lowercase
+            alphabet_len = ord('z') - ord('a') + 1
+            result += chr((ord(char) + shift - ord('a')) % alphabet_len + ord('a'))
         elif char.isupper():
-            alphabet = string.ascii_uppercase
+            alphabet_len = ord('Z') - ord('A') + 1
+            result += chr((ord(char) + shift - ord('A')) % alphabet_len + ord('A'))
         else:
             result += char
-            continue
-
-        result += alphabet[(alphabet.index(char) + shift ) % len(alphabet)]
     return result
 
 
-print(caesar("Hello World", 3))
+
+print(caesar_cipher("Hello World", 3))
+
+
+"""
+lower character
+ord('a') : 97
+ord('z') : 122
+
+upper character
+ord('A') : 65
+ord('Z') : 90
+"""
