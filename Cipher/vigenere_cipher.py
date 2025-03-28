@@ -15,26 +15,31 @@ def generateKey(plain_text: int, key: str) -> str:
     return key
 
 def encypto(plain_text, key) -> str:
-    print(key)
     result = ''
 
+    alphabet_len = ord('Z') - ord('A') + 1
     for i, char in enumerate(plain_text):
         if char not in ALPHABET:
             result += char
             continue
-        index = (ALPHABET.index(char) + ALPHABET.index(key[i])) % len(ALPHABET)
-        result += ALPHABET[index]
+        # index = (ALPHABET.index(char) + ALPHABET.index(key[i])) % len(ALPHABET)
+        # result += ALPHABET[index]
+        index = ((((ord(char) - ord('A')) + (ord(key[i]) - ord('A'))) % alphabet_len) + ord('A'))
+        result += chr(index)
     return result
 
 def decypto(encypted_text, key) -> str:
     result = ''
+    alphabet_len = ord('Z') - ord('A') + 1
 
     for i, char in enumerate(encypted_text):
         if char not in ALPHABET:
             result += char
             continue
-        index = (ALPHABET.index(char) - ALPHABET.index(key[i]) + len(ALPHABET)) % len(ALPHABET)
-        result += ALPHABET[index]
+        # index = (ALPHABET.index(char) - ALPHABET.index(key[i]) + len(ALPHABET)) % len(ALPHABET)
+        # result += ALPHABET[index]
+        index = (((ord(char) - ord('A')) - (ord(key[i]) - ord('A'))) % alphabet_len) + ord('A')
+        result += chr(index)
     return result
 
 
