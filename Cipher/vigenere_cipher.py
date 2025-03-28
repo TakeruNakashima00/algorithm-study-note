@@ -6,11 +6,15 @@ import string
 ALPHABET = string.ascii_uppercase
 
 def generateKey(plain_text: int, key: str) -> str:
-    plain_text_len = len(plain_text)
+    # plain_text_len = len(plain_text)
 
-    for i in range(0, plain_text_len):
-        if len(key) == plain_text_len:
-            break
+    # for i in range(0, plain_text_len):
+    #     if len(key) == plain_text_len:
+    #         break
+    #     key += key[i]
+
+    remain_length = len(plain_text) - len(key)
+    for i in range(remain_length):
         key += key[i]
     return key
 
