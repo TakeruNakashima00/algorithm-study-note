@@ -3,8 +3,10 @@ Input: plain_text: "ATTACK SILICON VALLEY", key: "HELLO"
 """
 import string
 
+ALPHABET = string.ascii_uppercase
 
-def generateKey(plain_text_len: int, key: str) -> str:
+def generateKey(plain_text: int, key: str) -> str:
+    plain_text_len = len(plain_text)
 
     for i in range(0, plain_text_len):
         if len(key) == plain_text_len:
@@ -12,23 +14,35 @@ def generateKey(plain_text_len: int, key: str) -> str:
         key += key[i]
     return key
 
-def vigenere_cipher(plain_text, key) -> str:
-    alphabet = string.ascii_uppercase
-    key = generateKey(len(plain_text), key)
+def encypto(plain_text, key) -> str:
     print(key)
     result = ''
 
-    # cypto
     for i, char in enumerate(plain_text):
-        print(i)
-        if char not in alphabet:
+        if char not in ALPHABET:
             result += char
             continue
-        index = (alphabet.index(char) + alphabet.index(key[i])) % len(alphabet)
-        result += alphabet[index]
+        index = (ALPHABET.index(char) + ALPHABET.index(key[i])) % len(ALPHABET)
+        result += ALPHABET[index]
+    return result
+
+def decypto(encypted_text, key) -> str:
+    result = ''
+
+    for i, char in enumerate(encypted_text):
+        if char not in ALPHABET:
+            result += char
+            continue
+        index = (ALPHABET.index(char) - ALPHABET.index(key[i]) + len(ALPHABET)) % len(ALPHABET)
+        result += ALPHABET[index]
     return result
 
 
 if __name__ == '__main__':
-    print(vigenere_cipher("ATTACK SILICON VALLEY", "HELLO"))
+    t = 'ATTACK SILICON VALLEY'
+    k = generateKey(t, 'HELLO')
+    e = encypto(t, k)
+    print(e)
+    d = decypto(e, k)
+    print(d)
 
