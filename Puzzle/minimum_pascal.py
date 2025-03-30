@@ -22,12 +22,12 @@ def sum_min_path(triangle: List[List[int]]) -> Optional[int]:
         line_path_sum = []
         for i, value in enumerate(line):
             if i == 0:
-                sum_value = line[i] + tree_sum[j-1][0]
+                sum_value = value + tree_sum[j-1][0]
             elif i == len(line) -1 :
-                sum_value = line[i] + tree_sum[j-1][i-1]
+                sum_value = value + tree_sum[j-1][i-1]
             else:
                 min_path = min(tree_sum[j-1][i-1], tree_sum[j-1][i])
-                sum_value = line[i] + min_path
+                sum_value = value + min_path
             line_path_sum.append(sum_value)
         tree_sum[j] = line_path_sum
         j += 1
