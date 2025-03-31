@@ -25,11 +25,3 @@ if __name__ == '__main__':
     print(numbers)
     numbers = comb_sort(numbers)
     print(numbers)
-
-
-"""
-can express limit line by double for loop
-
- for i in range(len_numbers):
-        for j in range(len_numbers - 1 - i):
-"""
