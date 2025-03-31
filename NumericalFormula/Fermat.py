@@ -1,6 +1,5 @@
 from typing import Tuple, List
 import sys
-import time
 
 def fermat_last_theorem_v1(max_num: int, square_num: int) -> List[Tuple[int, int, int]]:
     result = []
@@ -25,7 +24,7 @@ def fermat_last_theorem_v2(max_num: int, square_num: int) -> List[Tuple[int, int
             pow_sum = pow(x, square_num) + pow(y, square_num)
 
             if pow_sum > sys.maxsize:
-                raise ValueError()
+                raise ValueError(x, y, z, square_num, pow_sum)
 
             z = pow(pow_sum, 1.0/square_num)
             # if (x**2 + y**2)**(1/2) is integer
@@ -39,10 +38,12 @@ def fermat_last_theorem_v2(max_num: int, square_num: int) -> List[Tuple[int, int
     return result
 
 if __name__ ==  '__main__':
-    start1 = time.time()
-    print('v1', fermat_last_theorem_v1(20, 2))
-    print('v1', 'time =', time.time() - start1)
+    import time
+    for num in range(2,10):
+        start = time.time()
+        print('v1', fermat_last_theorem_v1(20, num))
+        print('v1', 'time =', time.time() - start)
 
-    start2 = time.time()
-    print('v2', fermat_last_theorem_v2(20, 2))
-    print('v2', 'time =', time.time() - start2)
+        start = time.time()
+        print('v2', fermat_last_theorem_v2(20, num))
+        print('v2', 'time =', time.time() - start)
